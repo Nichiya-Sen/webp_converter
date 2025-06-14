@@ -75,7 +75,7 @@ except Exception as e:
 
 # 語言字典
 lang_zh_TW = {
-    "title": "WebP 轉換工具(webp_converter)", # 更新版本號
+    "title": "圖像轉換與命名工具", # 更新版本號
     "language_label": "語言：",
     "instructions_btn": "使用說明",
     "select_files_btn": "選擇圖片檔案",
@@ -156,7 +156,7 @@ lang_zh_TW = {
 }
 
 lang_en = {
-    "title": "WebP Converter 8.7 (Minimal UI v47)", # Update version
+    "title": "Image Converter and Renamer Tool", # Update version
     "language_label": "Language:",
     "instructions_btn": "Instructions",
     "select_files_btn": "Select Image Files",
@@ -237,7 +237,7 @@ Thank you for using this program
 }
 
 lang_ja = {
-    "title": "WebP 変換ツール 8.7 (Minimal UI v47)", # Update version
+    "title": "画像変換・リネームツール", # Update version
     "language_label": "言語：",
     "instructions_btn": "使用説明",
     "select_files_btn": "画像ファイルを選択",
@@ -291,7 +291,7 @@ lang_ja = {
 
 4. 変換の開始：
    - 點擊「開始轉換」，程式會將選取的圖片轉換為指定格式，並儲存到輸出資料夾。
-   - 轉換完成後，可點擊「開啟輸出資料夾」查看結果。
+   - 変換完成後，可點擊「開啟輸出資料夾」查看結果。
 
 5. 其他功能：
    - 點擊檔案清單中的檔案，可在右側預覽圖片。
@@ -324,8 +324,8 @@ languages = {
     "日本語": lang_ja
 }
 
-# 修正了 WebPConverterGUI 的定義，使其接受 master 參數
-class WebPConverterGUI:
+# 修正了 ImageConverterAndRenamerToolGUI 的定義，使其接受 master 參數
+class ImageConverterAndRenamerToolGUI:
     def __init__(self, master):
         self.master = master
         self.current_language = self.load_settings().get("language", "繁體中文")  # 從設定載入語言，預設繁體中文
@@ -333,6 +333,17 @@ class WebPConverterGUI:
         master.title(self.lang["title"])
         master.geometry("1000x600")
         master.resizable(True, True)
+
+        try:
+            # 設定視窗圖示 - 請將 icon.ico 替換為你的圖示檔案名稱
+            icon_path = "icon.ico"
+            if os.path.exists(icon_path):
+                master.iconbitmap(icon_path)
+            else:
+                print(f"警告：圖示檔案 '{icon_path}' 未找到。")
+        except Exception as e:
+            print(f"設定視窗圖示時發生錯誤：{e}")
+
 
         self.input_files = []
         self.initial_bases = {}
@@ -1583,7 +1594,7 @@ if __name__ == '__main__':
     # Check if root was successfully created (either TkinterDnD.Tk or Tk) in the try/except block above
     if root:
         # Instantiate the GUI class, passing the root window
-        app = WebPConverterGUI(root)
+        app = ImageConverterAndRenamerToolGUI(root)
 
         # Start the Tkinter event loop
         root.mainloop()
